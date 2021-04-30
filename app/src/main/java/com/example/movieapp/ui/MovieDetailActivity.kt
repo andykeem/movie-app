@@ -38,6 +38,7 @@ class MovieDetailActivity : AppCompatActivity() {
             val service = MovieApi.httpClient().create(GenreService::class.java)
             val factory = MovieDetailViewModel.Factory(db, service, it)
             viewModel = ViewModelProvider(this, factory).get(MovieDetailViewModel::class.java)
+            viewModel.setMovieLoaded(true)
             binding.model = viewModel
         }
 
