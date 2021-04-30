@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Movie App</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="movie_title_with_release_date">%1$s (%2$s)</string>
+    <string name="movie_user_score">%d\%%</string>
+    <string name="label_movie_genre">Genre</string>
+    <string name="label_movie_release_date">Release Date</string>
+    <string name="label_movie_rating">Rating</string>
+    <string name="label_movie_overview">Overview</string>
+    <string name="menu_label_home">Home</string>
+    <string name="menu_label_favorite">Favorites</string>
+    <string name="msg_favorite_added">Movie added to the favorites!</string>
+    <string name="msg_favorite_removed">Movie removed from the favorites!</string>
+    <string name="no_favorites_available">No favorites available at this time.</string>
+</resources>
