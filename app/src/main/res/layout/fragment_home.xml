@@ -33,7 +33,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/carousel_now_playing"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_marginTop="8dp"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
@@ -70,7 +70,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/carousel_most_popular"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_marginTop="8dp"
                 android:paddingBottom="64dp"
                 android:paddingEnd="8dp"
