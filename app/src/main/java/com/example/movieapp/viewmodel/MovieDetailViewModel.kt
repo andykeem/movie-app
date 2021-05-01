@@ -10,6 +10,7 @@ import com.example.movieapp.model.Genre
 import com.example.movieapp.model.GenreList
 import com.example.movieapp.model.Movie
 import com.example.movieapp.network.GenreService
+import com.example.movieapp.network.MovieApi.MOVIE_API_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -34,7 +35,7 @@ class MovieDetailViewModel(val db: AppDatabase,
     val movieLoaded = ObservableBoolean()
 
     fun fetchGenreList() {
-        service.genreList().enqueue(object : Callback<GenreList> {
+        service.genreList(MOVIE_API_KEY).enqueue(object : Callback<GenreList> {
             override fun onResponse(call: Call<GenreList>, response: Response<GenreList>) {
                 Log.d(TAG, "response: $response")
                 _genreList.postValue(response.body()?.genres)

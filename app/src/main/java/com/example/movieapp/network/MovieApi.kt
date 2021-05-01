@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object MovieApi {
 
     const val MOVIE_API_KEY = BuildConfig.MOVIE_API_KEY
-    const val MOVIE_API_URL = "https://api.themoviedb.org"
+    const val MOVIE_API_URL = "https://api.themoviedb.org/3/"
 
     fun httpClient(): Retrofit {
         val interceptor = HttpLoggingInterceptor()

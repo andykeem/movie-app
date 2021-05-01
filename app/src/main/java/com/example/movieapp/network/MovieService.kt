@@ -4,12 +4,13 @@ import com.example.movieapp.model.MostPopular
 import com.example.movieapp.model.NowPlaying
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface MovieService {
 
-    @GET(value = "3/movie/now_playing?api_key=${MovieApi.MOVIE_API_KEY}")
-    fun nowPlaying(): Call<NowPlaying>
+    @GET(value = "movie/now_playing")
+    fun nowPlaying(@Query(value = "api_key") apiKey: String): Call<NowPlaying>
 
-    @GET(value = "3/movie/popular?api_key=${MovieApi.MOVIE_API_KEY}")
-    fun mostPopular(): Call<MostPopular>
+    @GET(value = "movie/popular")
+    fun mostPopular(@Query(value = "api_key") apiKey: String): Call<MostPopular>
 }

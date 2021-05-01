@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.model.MostPopular
 import com.example.movieapp.model.Movie
 import com.example.movieapp.model.NowPlaying
+import com.example.movieapp.network.MovieApi.MOVIE_API_KEY
 import com.example.movieapp.network.MovieService
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,7 +28,7 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
     val moviesLoaded = ObservableBoolean()
 
     fun fetchNowPlaying() {
-        service.nowPlaying().enqueue(object : Callback<NowPlaying> {
+        service.nowPlaying(MOVIE_API_KEY).enqueue(object : Callback<NowPlaying> {
             override fun onResponse(call: Call<NowPlaying>, response: Response<NowPlaying>) {
                 Log.d(TAG, "response: $response")
                 response.body()?.let {
@@ -43,7 +44,7 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
     }
 
     fun fetchMostPoular() {
-        service.mostPopular().enqueue(object : Callback<MostPopular> {
+        service.mostPopular(MOVIE_API_KEY).enqueue(object : Callback<MostPopular> {
             override fun onResponse(call: Call<MostPopular>, response: Response<MostPopular>) {
                 Log.d(TAG, "response: $response")
                 response.body()?.let {
