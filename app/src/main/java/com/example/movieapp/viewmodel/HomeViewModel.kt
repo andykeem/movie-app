@@ -6,9 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.movieapp.model.MostPopular
 import com.example.movieapp.model.Movie
-import com.example.movieapp.model.NowPlaying
+import com.example.movieapp.model.MovieResponse
 import com.example.movieapp.network.MovieApi.MOVIE_API_KEY
 import com.example.movieapp.network.MovieService
 import retrofit2.Call
@@ -28,8 +27,8 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
     val moviesLoaded = ObservableBoolean()
 
     fun fetchNowPlaying() {
-        service.nowPlaying(MOVIE_API_KEY).enqueue(object : Callback<NowPlaying> {
-            override fun onResponse(call: Call<NowPlaying>, response: Response<NowPlaying>) {
+        service.nowPlaying(MOVIE_API_KEY).enqueue(object : Callback<MovieResponse> {
+            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 Log.d(TAG, "response: $response")
                 response.body()?.let {
                     _nowPlaying.postValue(it.results)
@@ -37,22 +36,22 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<NowPlaying>, t: Throwable) {
+            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 Log.e(TAG, t.message, t)
             }
         })
     }
 
     fun fetchMostPoular() {
-        service.mostPopular(MOVIE_API_KEY).enqueue(object : Callback<MostPopular> {
-            override fun onResponse(call: Call<MostPopular>, response: Response<MostPopular>) {
+        service.mostPopular(MOVIE_API_KEY).enqueue(object : Callback<MovieResponse> {
+            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 Log.d(TAG, "response: $response")
                 response.body()?.let {
                     _mostPopular.postValue(it.results)
                 }
             }
 
-            override fun onFailure(call: Call<MostPopular>, t: Throwable) {
+            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 Log.e(TAG, t.message, t)
             }
         })
