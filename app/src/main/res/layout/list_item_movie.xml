@@ -9,17 +9,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/poster"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="240dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:scaleType="centerCrop"
             android:contentDescription="@{model.title}"
             android:onClick="@{(v) -> model.onMovieClick(v)}"
             app:imgUrl="@{model.movie.posterUrl}"

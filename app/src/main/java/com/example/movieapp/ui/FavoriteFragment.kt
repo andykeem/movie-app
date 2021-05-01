@@ -57,14 +57,10 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun updateList(list: List<Favorite>) {
-        if (list.isEmpty()) {
-
-        } else {
-            list.forEach {
-                favoriteListAdapter.list.add(it)
-            }
-            favoriteListAdapter.notifyDataSetChanged()
+        list.forEach {
+            favoriteListAdapter.list.add(it)
         }
+        favoriteListAdapter.notifyDataSetChanged()
     }
 
     inner class FavoriteListAdapter(val ctx: Context?) : RecyclerView.Adapter<FavoriteViewHolder>() {
