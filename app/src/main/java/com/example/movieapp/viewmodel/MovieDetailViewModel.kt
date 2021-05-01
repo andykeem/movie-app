@@ -7,7 +7,7 @@ import androidx.lifecycle.*
 import com.example.movieapp.db.AppDatabase
 import com.example.movieapp.db.entity.Favorite
 import com.example.movieapp.model.Genre
-import com.example.movieapp.model.GenreList
+import com.example.movieapp.model.GenreResponse
 import com.example.movieapp.model.Movie
 import com.example.movieapp.network.GenreService
 import com.example.movieapp.network.MovieApi.MOVIE_API_KEY
@@ -35,14 +35,14 @@ class MovieDetailViewModel(val db: AppDatabase,
     val movieLoaded = ObservableBoolean()
 
     fun fetchGenreList() {
-        service.genreList(MOVIE_API_KEY).enqueue(object : Callback<GenreList> {
-            override fun onResponse(call: Call<GenreList>, response: Response<GenreList>) {
+        service.genreList(MOVIE_API_KEY).enqueue(object : Callback<GenreResponse> {
+            override fun onResponse(call: Call<GenreResponse>, response: Response<GenreResponse>) {
                 Log.d(TAG, "response: $response")
                 _genreList.postValue(response.body()?.genres)
                 setMovieLoaded(true)
             }
 
-            override fun onFailure(call: Call<GenreList>, t: Throwable) {
+            override fun onFailure(call: Call<GenreResponse>, t: Throwable) {
                 Log.e(TAG, t.message, t)
             }
         })
