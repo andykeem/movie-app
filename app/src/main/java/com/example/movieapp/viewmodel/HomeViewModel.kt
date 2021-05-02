@@ -20,9 +20,11 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
 
     private val _nowPlaying = MutableLiveData<List<Movie>>()
     val nowPlaying: LiveData<List<Movie>> = _nowPlaying
+    val nowPlayingFailed = ObservableBoolean()
 
     private val _mostPopular = MutableLiveData<List<Movie>>()
     val mostPopular: LiveData<List<Movie>> = _mostPopular
+    val mostPopularFailed = ObservableBoolean()
 
     val moviesLoaded = ObservableBoolean()
 
@@ -38,6 +40,7 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 Log.e(TAG, t.message, t)
+                setNowPlayingFailed(true)
             }
         })
     }
@@ -53,12 +56,21 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 Log.e(TAG, t.message, t)
+                setMostPopularFailed(true)
             }
         })
     }
 
     fun setMoviesLoaded(loaded: Boolean) {
         moviesLoaded.set(loaded)
+    }
+
+    fun setNowPlayingFailed(failed: Boolean) {
+        nowPlayingFailed.set(failed)
+    }
+
+    fun setMostPopularFailed(failed: Boolean) {
+        mostPopularFailed.set(failed)
     }
 
     class Factory(val service: MovieService) : ViewModelProvider.Factory {

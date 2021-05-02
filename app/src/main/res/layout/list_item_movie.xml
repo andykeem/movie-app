@@ -24,6 +24,7 @@
             android:contentDescription="@{model.title}"
             android:onClick="@{(v) -> model.onMovieClick(v)}"
             app:imgUrl="@{model.movie.posterUrl}"
+            app:placeholder="@{@drawable/ic_placeholder}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

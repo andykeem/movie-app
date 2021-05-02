@@ -15,7 +15,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             tools:context=".ui.HomeFragment">
 
             <TextView
@@ -27,6 +26,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/now_playing"
                 style="@style/SectionHeading"
+                android:visibility="@{model.nowPlayingFailed ? View.GONE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +37,7 @@
                 android:layout_marginTop="8dp"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
+                android:visibility="@{model.nowPlayingFailed ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/heading_now_playing" />
@@ -50,6 +51,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@color/gray_light"
+                android:visibility="@{model.nowPlayingFailed ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toTopOf="@+id/carousel_most_popular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +65,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/most_popular"
+                android:visibility="@{model.mostPopularFailed ? View.GONE : View.VISIBLE}"
                 style="@style/SectionHeading"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
@@ -75,6 +78,7 @@
                 android:paddingBottom="64dp"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
+                android:visibility="@{model.mostPopularFailed ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,11 +87,38 @@
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="@{model.moviesLoaded ? View.GONE : View.VISIBLE}"
+                android:visibility="@{model.moviesLoaded || model.nowPlayingFailed || model.mostPopularFailed ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/iv_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:importantForAccessibility="no"
+                android:visibility="@{model.moviesLoaded ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_error_24"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/tv_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_msg"
+                android:layout_marginTop="8dp"
+                android:textColor="@android:color/holo_red_dark"
+                android:visibility="@{model.moviesLoaded ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_error" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

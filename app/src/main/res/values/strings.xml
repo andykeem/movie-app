@@ -15,4 +15,5 @@
     <string name="msg_favorite_added">Movie added to the favorites!</string>
     <string name="msg_favorite_removed">Movie removed from the favorites!</string>
     <string name="no_favorites_available">No favorites available at this time.</string>
+    <string name="error_msg">Failed to load contents, try again later.</string>
 </resources>
