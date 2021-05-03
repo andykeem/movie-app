@@ -26,15 +26,12 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
     val mostPopular: LiveData<List<Movie>> = _mostPopular
     val mostPopularFailed = ObservableBoolean()
 
-    val moviesLoaded = ObservableBoolean()
-
     fun fetchNowPlaying() {
         service.nowPlaying(MOVIE_API_KEY).enqueue(object : Callback<MovieResponse> {
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 Log.d(TAG, "response: $response")
                 response.body()?.let {
                     _nowPlaying.postValue(it.results)
-                    setMoviesLoaded(true)
                 }
             }
 
@@ -59,10 +56,6 @@ class HomeViewModel(val service: MovieService) : ViewModel() {
                 setMostPopularFailed(true)
             }
         })
-    }
-
-    fun setMoviesLoaded(loaded: Boolean) {
-        moviesLoaded.set(loaded)
     }
 
     fun setNowPlayingFailed(failed: Boolean) {
